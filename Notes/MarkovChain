@@ -1,0 +1,43 @@
+Probabilistic Markov-rule doesn't change over time
+
+Local - one person jumping around independent of others
+	Xn = where you are at step n
+	P(Xn = origin)
+	E(time of 1st return to origin)
+	probability of a certain jump
+
+Global - many people jumping around
+	V = [proportion @ state 0, proportion @ state 1, ... , proportion @ state N]	->	transition matrix
+	proportion of people making a certain jump
+
+p_n(i, j)	=	probability that are you will at state j in n steps such that you are at state i now
+														or
+				proportion of those who will be at state j in n steps such that they are at state i now
+
+Transition matrix rows are probability of leaving state and columns are probability of arriving at state
+		*** rows should add up to 1 ***
+
+There are 2 bad behaviors
+	1) Reducible - Working on disjoint graphs or more generally settles in more than 1 state.
+		*** Fix by treating the separate states as different Markov-chains ***
+	2) Periodic - Working on cyclic graphs without an outlet from the cycle.
+		*** Fix by adding small probability to stay in a particular state of the cycle***
+
+Fundamental Theorem of finite-state, discrete time Markon Chains
+	If irreducible and aperiodic, then there exists a unique stationary distribution.
+	The system converges to a statitionary distribution no matter how it starts.
+	The stationary distribution is the eigenvector of the transform matrix associated to eigenvelue 1.
+
+A stationary distribution is means the proportion of people leaving a state is equal to the proportion of people entering that same state
+The stationary distribution = [1/expected time of returning to state 0, 1/expected time of returning to state 1, ..., 1/expected time of returning to state N]
+
+The expected time of first return to a specific state is the smallest cycle to get back to that state.
+
+The "relaxation time" (how many steps it takes to reach a stationary distributino from some other initial distribution) is controlled by the spectral gap.
+	spectral gap - the difference between the first and second eigenvalue
+		*** The larger the gap the faster the convergence ***
+	all eigenvalues for the transition matrix are between -1 and 1
+
+Recurrent - probability of returning to the origin is 1
+	if recurrent, the expected value of the number of times we keep returning is infinite
+	*** null recurent is when the expected time to return is infinite, but you are garaunteed to return at some point ***
